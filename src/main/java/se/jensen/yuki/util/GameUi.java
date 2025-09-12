@@ -3,7 +3,6 @@ package se.jensen.yuki.util;
 import javax.swing.*;
 import java.awt.*;
 import java.util.NoSuchElementException;
-
 import static javax.swing.JOptionPane.PLAIN_MESSAGE;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
 
@@ -21,13 +20,28 @@ public class GameUi {
     private static final String INPUT_ERROR_MESSAGE = "Fel inmatning! Ange minst 1 och högst 10 tecken";
     /** Quit-Dialogens texten. */
     private static final String QUIT_MESSAGE = "Vill du avsluta spelet?";
+    /** Fil vägen för icon bild. */
+    private static final String ICON_PATH = "./src/main/resources/dice.png";
+    /** Icon bild */
+    private final ImageIcon icon;
+
+    /**
+     * Konstruktionen som Skapa icon i.
+     */
+    public GameUi() {
+        icon = makeIcon();
+        // Om fil vägen är felaktig
+        if (icon == null) {
+            System.out.println("Felaktig map till icon bild.");
+        }
+    }
 
     /**
      * Visar meddelande för att börja spelet.
      * @throws HeadlessException om applikationen körs på CUI-miljö.
      */
     public void showStartDialog() throws HeadlessException {
-        JOptionPane.showMessageDialog(null, START_DIALOG_MESSAGE, START_DIALOG_TITLE, PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, START_DIALOG_MESSAGE, START_DIALOG_TITLE, PLAIN_MESSAGE, icon);
     }
 
     /**
@@ -118,5 +132,19 @@ public class GameUi {
             // Visa vinnare
             JOptionPane.showMessageDialog(null, winnerFullName + " vann!\nScores: " + winnerScore + " - " + loserScore, "Resultat", PLAIN_MESSAGE);
         }
+    }
+
+    /**
+     * Läser en bild fil och skalar om för icon
+     * @return ImageIcon för icon av dialogerna. När fil vägen är felaktig returnerar null.
+     */
+    public ImageIcon makeIcon() {
+        ImageIcon unScaledIcon = new ImageIcon(ICON_PATH);
+        if (unScaledIcon.getIconWidth() == -1) {
+            return null;
+        }
+        Image img = unScaledIcon.getImage();
+        img = img.getScaledInstance(64, 64, Image.SCALE_SMOOTH);
+        return new ImageIcon(img);
     }
 }
