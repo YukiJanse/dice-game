@@ -1,4 +1,4 @@
-package se.jensen.yuki.util;
+package se.jensen.yuki.ui;
 
 import javax.swing.*;
 import java.awt.*;
@@ -146,9 +146,11 @@ public class GameUi {
      */
     public ImageIcon makeIcon() {
         ImageIcon unScaledIcon = new ImageIcon(ICON_PATH);
+        // Om misslyckas att få bilden
         if (unScaledIcon.getIconWidth() == -1) {
             return null;
         }
+        // Fixa storlek
         Image img = unScaledIcon.getImage();
         img = img.getScaledInstance(64, 64, Image.SCALE_SMOOTH);
         return new ImageIcon(img);

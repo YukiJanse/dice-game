@@ -3,8 +3,8 @@ package se.jensen.yuki.controller;
 import se.jensen.yuki.model.Dice;
 import se.jensen.yuki.model.Player;
 import se.jensen.yuki.model.Result;
-import se.jensen.yuki.util.GameSound;
-import se.jensen.yuki.util.GameUi;
+import se.jensen.yuki.sound.GameSound;
+import se.jensen.yuki.ui.GameUi;
 
 import java.awt.*;
 import java.util.NoSuchElementException;
@@ -62,6 +62,7 @@ public class Game {
                 startTurn(player2, numberOfTurns);
             }
 
+            // Checka vinnare och visa resultat
             Result result = checkWinner(player1, player2);
             gameSound.playApplauseSound();
             gameUi.showWinner(result.winnerName(), result.winnerScore(), result.loserScore());
@@ -112,7 +113,7 @@ public class Game {
     private String askPlayerName(String title, String message) throws HeadlessException, CancellationException {
         String playerName = "";
         boolean isAsking = true;
-        while(isAsking) {
+        while(isAsking) { // Loopen är för om spelare ångrar sig att avsluta
             try {
                 playerName = gameUi.askPlayerName(title, message);
                 isAsking = false;
@@ -127,16 +128,22 @@ public class Game {
         return playerName;
     }
 
+    /**
+     * Checkar vinnare
+     * @param player1 är instansen av player1
+     * @param player2 är instansen av player2
+     * @return Result record (winnerName, winnerScore, loserScore)
+     */
     private Result checkWinner(Player player1, Player player2) {
         // Visa vinnare
         String winnerName = null;
         int winnerScore = 0;
         int loserScore = 0;
-        if (player1.getScore() > player2.getScore()) {
+        if (player1.getScore() > player2.getScore()) { // Om player1 vinner
             winnerName = player1.getFullName();
             winnerScore = player1.getScore();
             loserScore = player2.getScore();
-        } else if (player2.getScore() > player1.getScore()) {
+        } else if (player2.getScore() > player1.getScore()) { // Om player2 vinner
             winnerName = player2.getFullName();
             winnerScore = player2.getScore();
             loserScore = player1.getScore();

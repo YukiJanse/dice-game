@@ -1,4 +1,4 @@
-package se.jensen.yuki.util;
+package se.jensen.yuki.sound;
 
 import javax.sound.sampled.*;
 import java.io.File;
