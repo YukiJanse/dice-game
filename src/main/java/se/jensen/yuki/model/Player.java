@@ -12,16 +12,6 @@ public class Player {
     private int score = 0;
 
     /**
-     * Konstructionen. Kräver båda förnamn och efternamn.
-     * @param firstName är Players förnamn.
-     * @param lastName är Players förnamn.
-     */
-    public Player(String firstName, String lastName) {
-        setFirstName(firstName);
-        setLastName(lastName);
-    }
-
-    /**
      * Setter för firstName
      * @param firstName är Players förnamn.
      */
@@ -56,7 +46,7 @@ public class Player {
     /**
      * Nollställar score efter matchen.
      */
-    public void clearScore() {
+    private void clearScore() {
         this.score = 0;
     }
 
@@ -66,5 +56,21 @@ public class Player {
      */
     public String getFullName() {
         return firstName + " " + lastName;
+    }
+
+    /**
+     * Raderar players namn.
+     */
+    private void clearName() {
+        setFirstName("");
+        setLastName("");
+    }
+
+    /**
+     * Initialization
+     */
+    public void cleanUp() {
+        clearScore();
+        clearName();
     }
 }

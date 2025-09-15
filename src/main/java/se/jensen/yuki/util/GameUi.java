@@ -18,6 +18,12 @@ public class GameUi {
     private static final String START_DIALOG_MESSAGE = "Varje spelare slår tärningen två gånger, och den som får högst summa vinner!";
     /** Error message för namn inmatningen. */
     private static final String INPUT_ERROR_MESSAGE = "Fel inmatning! Ange minst 1 och högst 10 tecken";
+    /** Turstartmeddelande */
+    private static final String START_TURN_MESSAGE = "s tur. Kasta tärningen!";
+    /** Meddelande att fråga spela igen */
+    private static final String ASK_PLAY_AGAIN_MESSAGE = "Vill du spela igen?";
+    /** Oavgjort meddelande */
+    private static final String EVEN_MESSAGE = "Det var oavgjort!";
     /** Quit-Dialogens texten. */
     private static final String QUIT_MESSAGE = "Vill du avsluta spelet?";
     /** Fil vägen för icon bild. */
@@ -80,7 +86,7 @@ public class GameUi {
      * @param numberOfTurns är rundans nummer.
      */
     public void startTurn(String fullName, int numberOfTurns) throws HeadlessException {
-        JOptionPane.showMessageDialog(null, (fullName + "s tur. Kasta tärningen!"), numberOfTurns + " rundan", PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, (fullName + START_TURN_MESSAGE), numberOfTurns + " rundan", PLAIN_MESSAGE);
     }
 
     /**
@@ -99,7 +105,7 @@ public class GameUi {
      * @throws HeadlessException om applikation körs på CUI-miljä.
      */
     public boolean askPlayAgain() throws HeadlessException {
-        int choice = JOptionPane.showOptionDialog(null, "Vill du spela igen?", "", YES_NO_OPTION, PLAIN_MESSAGE, null, CONTINUE_MENU_OPTIONS, CONTINUE_MENU_OPTIONS[1]);
+        int choice = JOptionPane.showOptionDialog(null, ASK_PLAY_AGAIN_MESSAGE, "", YES_NO_OPTION, PLAIN_MESSAGE, null, CONTINUE_MENU_OPTIONS, CONTINUE_MENU_OPTIONS[1]);
 
         return choice == 0;
     }
@@ -126,7 +132,7 @@ public class GameUi {
     public void showWinner(String winnerFullName, int winnerScore, int loserScore) throws HeadlessException {
         if(winnerFullName == null) {
             // Det är oavgjort om winner är null
-            JOptionPane.showMessageDialog(null, "Det var oavgjort!");
+            JOptionPane.showMessageDialog(null, EVEN_MESSAGE);
 
         } else {
             // Visa vinnare
