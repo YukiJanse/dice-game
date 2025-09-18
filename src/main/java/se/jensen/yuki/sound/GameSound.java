@@ -16,28 +16,30 @@ public class GameSound {
      * Spelar BGM ljuden
      */
     public void playBgm() {
-        try {
-            File soundFile = new File(BGM_SOUND_PATH);
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundFile);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioStream);
-            // Hämta volymkontrollen
-            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            volumeControl.setValue(-15.0f);
-
-            clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
-        }
+        playSound(BGM_SOUND_PATH, -15.0f);
     }
 
     /**
      * Spelar applåder ljuden
      */
     public void playApplauseSound() {
+        playSound(APPLAUSE_SOUND_PATH);
+    }
+
+    /**
+     * Spelar tärningens ljud
+     */
+    public void playThrowDiceSound() {
+        playSound(DICE_SOUND_PATH);
+    }
+
+    /**
+     * Spelar ett ljud
+     * @param filePath är en fil väg för ljudet
+     */
+    private void playSound(String filePath) {
         try {
-            File soundFile = new File(APPLAUSE_SOUND_PATH);
+            File soundFile = new File(filePath);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundFile);
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
@@ -48,14 +50,19 @@ public class GameSound {
     }
 
     /**
-     * Spelar tärningens ljud
+     * Spelar ett ljud
+     * @param filePath är en fil väg för ljudet
+     * @param volume är volym värdet
      */
-    public void playThrowDiceSound() {
+    private void playSound(String filePath, float volume) {
         try {
-            File soundFile = new File(DICE_SOUND_PATH);
+            File soundFile = new File(filePath);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundFile);
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
+            // Hämta volymkontrollen
+            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            volumeControl.setValue(volume);
             clip.start();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();

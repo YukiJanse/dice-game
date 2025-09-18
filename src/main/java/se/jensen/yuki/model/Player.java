@@ -12,6 +12,22 @@ public class Player {
     private int score = 0;
 
     /**
+     * Getter till firstName.
+     * @return firstName
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * Getter till lastName.
+     * @return lastName
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
      * Setter för firstName
      * @param firstName är Players förnamn.
      */

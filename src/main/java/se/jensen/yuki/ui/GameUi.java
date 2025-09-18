@@ -107,6 +107,7 @@ public class GameUi {
     public boolean askPlayAgain() throws HeadlessException {
         int choice = JOptionPane.showOptionDialog(null, ASK_PLAY_AGAIN_MESSAGE, "", YES_NO_OPTION, PLAIN_MESSAGE, null, CONTINUE_MENU_OPTIONS, CONTINUE_MENU_OPTIONS[1]);
 
+        // 0: play, 1: quit, -1: stäng-korset
         return choice == 0;
     }
 
@@ -119,6 +120,7 @@ public class GameUi {
     public boolean askQuitGame(String message) throws HeadlessException {
         int choice = JOptionPane.showOptionDialog(null, message, "", YES_NO_OPTION, PLAIN_MESSAGE, null, CONTINUE_MENU_OPTIONS, CONTINUE_MENU_OPTIONS[1]);
 
+        // 0: play, 1: quit, -1: stäng-korset
         return choice == 1;
     }
 

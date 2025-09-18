@@ -41,28 +41,28 @@ public class Game {
      */
     public void run() throws HeadlessException, CancellationException {
 
-        // Spelare
+        // Sätta true till värdet för loop villkoren
         boolean isGamePlaying = true;
+        // Spela BGM
         gameSound.playBgm();
 
         // Loopar spelet
         while(isGamePlaying) {
             // Visa introduktionen
             gameUi.showStartDialog();
-            // Sätta player namn
+            // Sätta players namn
             setPlayerNames(player1, DIALOG_TITLE_PLAYER1);
             setPlayerNames(player2, DIALOG_TITLE_PLAYER2);
 
             // Starta matchen två gånger
-            for (int i = 0; i < NUMBER_OF_DICE_ROLL; i++) {
-                int numberOfTurns = i + 1;
+            for (int i = 1; i <= NUMBER_OF_DICE_ROLL; i++) {
                 // Player1 kasta
-                startTurn(player1, numberOfTurns);
+                startTurn(player1, i);
                 // Player2 kasta
-                startTurn(player2, numberOfTurns);
+                startTurn(player2, i);
             }
 
-            // Checka vinnare och visa resultat
+            // Kontrollera vinnare och visa resultat
             Result result = checkWinner(player1, player2);
             gameSound.playApplauseSound();
             gameUi.showWinner(result.winnerName(), result.winnerScore(), result.loserScore());
@@ -129,7 +129,7 @@ public class Game {
     }
 
     /**
-     * Checkar vinnare
+     * Kontrollerar vinnare
      * @param player1 är instansen av player1
      * @param player2 är instansen av player2
      * @return Result record (winnerName, winnerScore, loserScore)
