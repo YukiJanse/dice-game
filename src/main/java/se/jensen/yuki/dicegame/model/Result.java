@@ -1,4 +1,4 @@
-package se.jensen.yuki.model;
+package se.jensen.yuki.dicegame.model;
 
 /**
  * Det behåller resultatet av tärning matchen.

@@ -1,4 +1,4 @@
-package se.jensen.yuki.model;
+package se.jensen.yuki.dicegame.model;
 
 /**
  * Player model.

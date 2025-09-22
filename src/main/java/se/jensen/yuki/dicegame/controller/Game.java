@@ -1,10 +1,10 @@
-package se.jensen.yuki.controller;
+package se.jensen.yuki.dicegame.controller;
 
-import se.jensen.yuki.model.Dice;
-import se.jensen.yuki.model.Player;
-import se.jensen.yuki.model.Result;
-import se.jensen.yuki.sound.GameSound;
-import se.jensen.yuki.ui.GameUi;
+import se.jensen.yuki.dicegame.model.Dice;
+import se.jensen.yuki.dicegame.model.Player;
+import se.jensen.yuki.dicegame.model.Result;
+import se.jensen.yuki.dicegame.sound.GameSound;
+import se.jensen.yuki.dicegame.ui.GameUi;
 
 import java.awt.*;
 import java.util.NoSuchElementException;

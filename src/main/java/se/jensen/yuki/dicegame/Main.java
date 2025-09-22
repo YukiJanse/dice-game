@@ -1,6 +1,6 @@
-package se.jensen.yuki.app;
+package se.jensen.yuki.dicegame;
 
-import se.jensen.yuki.controller.Game;
+import se.jensen.yuki.dicegame.controller.Game;
 
 import java.awt.*;
 import java.util.concurrent.CancellationException;

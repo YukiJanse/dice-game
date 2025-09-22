@@ -1,4 +1,4 @@
-package se.jensen.yuki.sound;
+package se.jensen.yuki.dicegame.sound;
 
 import javax.sound.sampled.*;
 import java.io.File;

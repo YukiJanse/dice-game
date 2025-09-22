@@ -1,4 +1,4 @@
-package se.jensen.yuki.ui;
+package se.jensen.yuki.dicegame.ui;
 
 import javax.swing.*;
 import java.awt.*;
