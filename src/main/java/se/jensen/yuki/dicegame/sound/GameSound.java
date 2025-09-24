@@ -16,21 +16,21 @@ public class GameSound {
      * Spelar BGM ljuden
      */
     public void playBgm() {
-        playSound(BGM_SOUND_PATH, -15.0f);
+        playLoopSound(BGM_SOUND_PATH, -50.0f);
     }
 
     /**
      * Spelar applåder ljuden
      */
     public void playApplauseSound() {
-        playSound(APPLAUSE_SOUND_PATH);
+        playSound(APPLAUSE_SOUND_PATH, -50.0f);
     }
 
     /**
      * Spelar tärningens ljud
      */
     public void playThrowDiceSound() {
-        playSound(DICE_SOUND_PATH);
+        playSound(DICE_SOUND_PATH, -50.0f);
     }
 
     /**
@@ -60,6 +60,27 @@ public class GameSound {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundFile);
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
+            // Hämta volymkontrollen
+            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            volumeControl.setValue(volume);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Spelar ett ljud och loopar det
+     * @param filePath är en fil väg för ljudet
+     * @param volume är volym värdet
+     */
+    private void playLoopSound(String filePath, float volume) {
+        try {
+            File soundFile = new File(filePath);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundFile);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
             // Hämta volymkontrollen
             FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             volumeControl.setValue(volume);
